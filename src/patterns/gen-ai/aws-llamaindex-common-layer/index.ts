@@ -14,12 +14,12 @@ import * as path from 'path';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
 import { Construct } from 'constructs';
 import { Layer } from '../../../common/helpers/python-lambda-layer-helper';
-import { LlamaindexProps } from '../../../common/props/LlamaindexProps';
+import { ExtendedLayerVersionProps } from '../../../common/props/ExtendedLayerVersionProps';
 
 /**
- * The properties for the LangchainLayerProps class.
+ * The properties for the LlamaindexLayerProps class.
  */
-export interface LlamaindexLayerProps extends LlamaindexProps {
+export interface LlamaindexLayerProps extends ExtendedLayerVersionProps {
   /**
    * Required. Lambda function runtime compatible with this Layer.
    */
@@ -30,13 +30,13 @@ export interface LlamaindexLayerProps extends LlamaindexProps {
   readonly architecture: lambda.Architecture;
   /**
    * Optional: Add '--upgrade' to pip install requirements.txt
-   * In case of a LangchainCommonLayer, this parameter is not used.
+   * In case of a LlamaindexCommonLayer, this parameter is not used.
    *
    * @default - false
    */
   readonly autoUpgrade?: boolean;
   /**
-   * A prop allowing additional python pip libraries to be installed with this langchain layer
+   * A prop allowing additional python pip libraries to be installed with this llamaindex layer
    *
    * @default - none
    */
@@ -51,7 +51,7 @@ export interface LlamaindexLayerProps extends LlamaindexProps {
 }
 
 /**
-   * The LangchainCommonDepsLayer class.
+   * The LlamaindexCommonDepsLayer class.
    */
 export class LlamaindexCommonDepsLayer extends Construct {
   /**
@@ -60,7 +60,7 @@ export class LlamaindexCommonDepsLayer extends Construct {
   public readonly layer: lambda.LayerVersion;
 
   /**
-     * This construct creates a lambda layer loaded with relevant libraries to run genai applications. Libraries include boto3, botocore, requests, requests-aws4auth, langchain, opensearch-py and openai.
+     * This construct creates a lambda layer loaded with relevant libraries to run genai applications. Libraries include boto3, botocore, requests, requests-aws4auth, llamaindex-core, opensearch-py and openai.
      * @param {cdk.App} scope - represents the scope for all the resources.
      * @param {string} id - this is a a scope-unique id.
      * @param {LlamaindexLayerProps} props - user provided props for the construct.
@@ -71,7 +71,7 @@ export class LlamaindexCommonDepsLayer extends Construct {
     super(scope, id);
 
     const layer = new Layer(this, 'Llamaindex Layer', {
-      path: path.join(__dirname, '../../../../layers/llamaindex-core'),
+      path: path.join(__dirname, '../../../../layers/llamaindex-common-deps'),
       description: 'Dependencies to build gen ai applications with llamaindex',
       ...props,
     });

@@ -1,0 +1,2 @@
+llama-index-embeddings-bedrock==0.3.0
+llama-index-llms-bedrock==0.2.0

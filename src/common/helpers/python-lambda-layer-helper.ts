@@ -15,9 +15,10 @@ import * as cdk from 'aws-cdk-lib';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
 import * as s3assets from 'aws-cdk-lib/aws-s3-assets';
 import { Construct } from 'constructs';
-import { LangchainProps } from '../props/LangchainProps';
+// import { LangchainProps } from '../props/LangchainProps';
+import { ExtendedLayerVersionProps } from '../props/ExtendedLayerVersionProps';
 
-export interface LayerProps extends LangchainProps {
+export interface LayerProps extends ExtendedLayerVersionProps {
   runtime: lambda.Runtime;
   architecture: lambda.Architecture;
   path: string;

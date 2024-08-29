@@ -209,7 +209,7 @@ project.eslint?.addRules({
 });
 
 project.eslint?.addIgnorePattern('LangchainProps.ts');
-project.eslint?.addIgnorePattern('LlamaindexProps.ts');
+project.eslint?.addIgnorePattern('ExtendedLayerVersionProps.ts');
 project.eslint?.addIgnorePattern('AdapterProps.ts');
 project.eslint?.addIgnorePattern('DockerLambdaCustomProps.ts');
 
@@ -219,7 +219,7 @@ new ProjenStruct(project, { name: 'LangchainProps', filePath: 'src/common/props/
   .withoutDeprecated()
   .omit('code', 'compatibleRuntimes', 'compatibleArchitectures');
 
-new ProjenStruct(project, { name: 'LlamaindexProps', filePath: 'src/common/props/LlamaindexProps.ts' })
+new ProjenStruct(project, { name: 'ExtendedLayerVersionProps', filePath: 'src/common/props/ExtendedLayerVersionProps.ts' })
   .mixin(Struct.fromFqn('aws-cdk-lib.aws_lambda.LayerVersionProps'))
   .withoutDeprecated()
   .omit('code', 'compatibleRuntimes', 'compatibleArchitectures');

@@ -104,7 +104,7 @@ lambda_deps_layer = LangchainCommonDepsLayer(
 ## Initializer
 
 ```typescript
-new LangchainCommonDepsLayer(scope: Construct, id: string, props: LangchainLayerProps)
+new LangchainCommonDepsLayer(scope: Construct, id: string, props: ExtendedLayerVersionProps)
 ```
 
 ### Parameters

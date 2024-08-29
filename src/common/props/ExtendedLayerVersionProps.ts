@@ -2,9 +2,9 @@
 import type { RemovalPolicy } from 'aws-cdk-lib';
 
 /**
- * LlamaindexProps
+ * ExtendedLayerVersionProps
  */
-export interface LlamaindexProps {
+export interface ExtendedLayerVersionProps {
   /**
    * Whether to retain this version of the layer when a new version is added or when the stack is deleted.
    * @default RemovalPolicy.DESTROY
