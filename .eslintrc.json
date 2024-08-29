@@ -41,6 +41,7 @@
     "*.generated.ts",
     "coverage",
     "LangchainProps.ts",
+    "LlamaindexProps.ts",
     "AdapterProps.ts",
     "DockerLambdaCustomProps.ts",
     "!.projenrc.ts",
