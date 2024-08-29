@@ -17,6 +17,8 @@ export * from './patterns/gen-ai/aws-qa-appsync-opensearch';
 export * from './patterns/gen-ai/aws-model-deployment-sagemaker';
 export * from './patterns/gen-ai/aws-contentgen-appsync-lambda';
 export * from './patterns/gen-ai/aws-web-crawler';
+export * from './patterns/gen-ai/aws-bedrock-cw-dashboard';
+export * from './patterns/gen-ai/aws-llamaindex-common-layer';
 
 export * as bedrock from './cdk-lib/bedrock';
 export * as amazonaurora from './cdk-lib/amazonaurora';
@@ -26,6 +28,6 @@ export * as opensearch_vectorindex from './cdk-lib/opensearch-vectorindex';
 export { version } from './common/helpers/utils';
 export * from './common/props/DockerLambdaCustomProps';
 export * from './common/props/LangchainProps';
+export * from './common/props/ExtendedLayerVersionProps';
 export * from './common/base-class/base-class';
 export * from './common/base-class/construct-name-enum';
-export * from './patterns/gen-ai/aws-bedrock-cw-dashboard';
