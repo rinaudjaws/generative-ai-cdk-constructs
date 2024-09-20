@@ -17,22 +17,21 @@ When filing an issue, please check [existing open](https://github.com/awslabs/ge
 * Any modifications you've made relevant to the bug
 * Anything unusual about your environment or deployment
 
-
 ## Contributing via Pull  Requests
 
 ### Pull Request Checklist
 
 * [ ] Testing
-  - Unit test added (prefer not to modify an existing test, otherwise, it's probably a breaking change)
-  - Integration test added (if adding a new pattern or making a significant update to an existing pattern)
+  * Unit test added (prefer not to modify an existing test, otherwise, it's probably a breaking change)
+  * Integration test added (if adding a new pattern or making a significant update to an existing pattern)
 * [ ] Docs
-  - __README__: README and/or documentation topic updated
-  - __Design__: For significant features, design document added to `design` folder
+  * __README__: README and/or documentation topic updated
+  * __Design__: For significant features, design document added to `design` folder
 * [ ] Title and Description
-  - __Change type__: title prefixed with **fix**, **feat** or **chore** and module name in parenthesis, which will appear in changelog
-  - __Title__: use lower-case and doesn't end with a period
-  - __Breaking?__: last paragraph: "BREAKING CHANGE: <describe what changed + link for details>"
-  - __Issues__: Indicate issues fixed via: "**Fixes #xxx**" or "**Closes #xxx**"
+  * __Change type__: title prefixed with __fix__, __feat__ or __chore__ and module name in parenthesis, which will appear in changelog
+  * __Title__: use lower-case and doesn't end with a period
+  * __Breaking?__: last paragraph: "BREAKING CHANGE: [describe what changed] + [link for details]"
+  * __Issues__: Indicate issues fixed via: "__Fixes #xxx__" or "__Closes #xxx__"
 
 ---
 
@@ -49,7 +48,8 @@ If you are proposing a new AWS Generative AI CDK Construct, the best way to do t
 Once the design is finalized, you can re-purpose this PR for the implementation, or open a new PR to that end.
 
 Good AWS Generative AI CDK Constructs have the following characteristics:
-  1) Multi-service: The goal of AWS Generative AI CDK Constructs is to weave multiple services together in a well-architected way. 
+
+  1) Multi-service: The goal of AWS Generative AI CDK Constructs is to weave multiple services together in a well-architected way.
   2) Configurable Business Logic: AWS Generative AI CDK Constructs should be applicable to all businesses and workloads as much as possible so that they are easily reusable.
   3) Reusable across multiple use-cases: We would rather have a small library of constructs that are wildly popular with customers rather than a huge library of constructs that customers find irrelevant.
   4) Well Architected: AWS Generative AI CDK Constructs should be secure, reliable, scalable, and cost efficient.
@@ -69,7 +69,7 @@ Now it's time to work your magic. Here are some guidelines:
    changes along the way, but try to avoid conflating multiple features. Eventually all these are going to go into a
    single commit, so you can use that to frame your scope.
 * If your change introduces a new construct, take a look at the our
-  [example construct]() for an explanation of the L3 patterns we use.
+  [example construct](blank) for an explanation of the L3 patterns we use.
   Feel free to start your contribution by copy&pasting files from that project,
   and then edit and rename them as appropriate -
   it might be easier to get started that way.
@@ -77,7 +77,7 @@ Now it's time to work your magic. Here are some guidelines:
   * Import statement for `Construct` is standalone, for example, `import { Construct } from '@aws-cdk/core';` instead of `import { Construct, App, Aws } from '@aws-cdk/core';`
   * Check to make sure the usage of `Construct` in the code is also standalone, for example, `export class IotToSqs extends Construct` insted of `export class IotToSqs extends cdk.Construct`
   * Core classes are imported from `@aws-cdk/core` only, for example, `import { Duration } from "@aws-cdk/core;` instead of `import { Duration } from "@aws-cdk/core/lib/duration";`
-  * DO NOT USE deprecated APIs, it will not build in CDKv2, for example, using `statistic?` attribute of [@aws-cdk/aws-cloudwatch.Alarm](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_cloudwatch.Alarm.html) Construct Props will fail to build in CDKv2 
+  * DO NOT USE deprecated APIs, it will not build in CDKv2, for example, using `statistic?` attribute of [@aws-cdk/aws-cloudwatch.Alarm](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_cloudwatch.Alarm.html) Construct Props will fail to build in CDKv2
 
 #### Integration Tests
 
@@ -118,7 +118,7 @@ Create a commit with the proposed changes:
 
 * If this commit includes breaking changes, they must be listed at the end in the following format (notice how multiple breaking changes should be formatted):
 
-```
+```text
 BREAKING CHANGE: Description of what broke and how to achieve this behavior now
 * **module-name:** Another breaking change
 * **module-name:** Yet another breaking change
@@ -138,18 +138,18 @@ BREAKING CHANGE: Description of what broke and how to achieve this behavior now
 
 #### Build steps
 
-- The Build workflow - controlled by the buildWorkflow field. On a ‘pull_request’ or ‘workflow_dispatch’ the library will be built and checked for anti-tamper (ensure no manual changes to generated files).
-- The Release workflow - controlled by the releaseWorkflow field. On a push to main (overridden at props.defaultReleaseBranch) the library is built, anti-tampered, version bumped with a commit, pushed back to git, and then published to the configured artifact repositories (e.g. npm, pypi).
+* The Build workflow - controlled by the buildWorkflow field. On a ‘pull_request’ or ‘workflow_dispatch’ the library will be built and checked for anti-tamper (ensure no manual changes to generated files).
+* The Release workflow - controlled by the releaseWorkflow field. On a push to main (overridden at props.defaultReleaseBranch) the library is built, anti-tampered, version bumped with a commit, pushed back to git, and then published to the configured artifact repositories (e.g. npm, pypi).
 
 By default, for every commit to the default (main) branch, a new version is released (trunk-based development). This includes the following steps:
 
-- Compile, lint and test the code.
-- Use JSII to produce library artifacts for all target languages.
-- Determine the next minor/patch version based on [Conventional Commits](https://www.conventionalcommits.org). Major versions must be explicitly bumped to protect consumers against breaking changes.
-- A changelog entry is generated based on commit history.
+* Compile, lint and test the code.
+* Use JSII to produce library artifacts for all target languages.
+* Determine the next minor/patch version based on [Conventional Commits](https://www.conventionalcommits.org). Major versions must be explicitly bumped to protect consumers against breaking changes.
+* A changelog entry is generated based on commit history.
 Packages are published to all target package managers.
 
-> **Warning**
+> __Warning__
 > Projen synthesizes files that are part of your source repository. This means that when you change you projenrc file, and execute projen, other files in your repo may change as a result.
 > Make sure to push those modified files as well. Otherwise, the self mutation step of the build will fail. This is to ensure that a pull request branch always represent the final state of the repository
 
@@ -162,8 +162,8 @@ Projen automatically performs semantic versioning based on [Conventional Commits
 
 For example:
 
-- fix: bump PATCH version (v0.0.1)
-- feat: bump MINOR version (v0.1.0)
+* fix: bump PATCH version (v0.0.1)
+* feat: bump MINOR version (v0.1.0)
 
 MAJOR version must be explicitly bumped by adding majorVersion: x to .projenrc.ts to protect users from critical changes.
 
@@ -171,14 +171,14 @@ GitHub provides additional document on [forking a repository](https://help.githu
 [creating a pull request](https://help.github.com/articles/creating-a-pull-request/).
 
 ## Code of Conduct
+
 This project has adopted the [Amazon Open Source Code of Conduct](https://aws.github.io/code-of-conduct).
 For more information see the [Code of Conduct FAQ](https://aws.github.io/code-of-conduct-faq) or contact
-opensource-codeofconduct@amazon.com with any additional questions or comments.
-
+[opensource-codeofconduct@amazon.com](mailto:opensource-codeofconduct@amazon.com) with any additional questions or comments.
 
 ## Security issue notifications
-If you discover a potential security issue in this project we ask that you notify AWS/Amazon Security via our [vulnerability reporting page](http://aws.amazon.com/security/vulnerability-reporting/). Please do **not** create a public github issue.
 
+If you discover a potential security issue in this project we ask that you notify AWS/Amazon Security via our [vulnerability reporting page](http://aws.amazon.com/security/vulnerability-reporting/). Please do __not__ create a public github issue.
 
 ## Licensing
 
@@ -186,5 +186,5 @@ See the [LICENSE](https://github.com/awslabs/generative-ai-cdk-constructs/blob/m
 
 We may ask you to sign a [Contributor License Agreement (CLA)](http://en.wikipedia.org/wiki/Contributor_License_Agreement) for larger changes.
 
-***
+---
 &copy; Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
